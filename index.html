@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylon Sam Travel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="php" href="index.php">
+</head>
+<body>
+<div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div >
+                    <img src="My_ceylon_Sam_Travel_20240209_144933_0000-removebg-preview.png" class="logo">
+                </div>
+<nav>
+    <ul>
+       <b> <li><a href="">HOME</a></li></b>
+       <b> <li><a href="photos.html">PHOTOS</a></li></b>
+       <b> <li><a href="contact.html">CONTACT US</a></li></b>
+    </ul>
+</nav>
+</div>
+        </div>
+<p class="welcome">WE ARE <BR>GUIDE AND CARE  <br>YOUR TRIP</p>
+</div>
+
+
+<div class="about">
+    <h2 class="us">Why choose us?</h2>
+<p class="aboutus">We are guide and care your trip.We give our best service and safe your trip. We have different packages. We have packages at affordable prices.<br> You can get a very convenient and safe service from us. Experienced in this field. Friendly and experienced service available.</p>
+<div class="pics">
+    <img src="guid 1.jpg" alt="">
+    <img src="guid 2.jpg" alt="">
+    <img src="guid 3.jpg" alt="">
+    <img src="guid 4.jpg" alt="">
+</div>
+    </div>
+
+    <!-- Your existing website content -->
+
+    <h2>Leave a Review</h2>
+
+    <form action="review_handler.php" method="post">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+        <br>
+
+        <label for="review">Your Review:</label>
+        <textarea id="review" name="review" rows="4" cols="50" required></textarea>
+        <br>
+
+        <input type="submit" value="Submit Review">
+    </form>
+
+    <!-- Display existing reviews if needed -->
+    <!-- Your existing website content -->
+
+    <h2>Customer Reviews</h2>
+
+    <div id="reviews">
+        <!-- Reviews will be displayed here -->
+    </div>
+    <script>
+        // Use JavaScript to fetch and display reviews
+        fetch('display_reviews.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('reviews').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
+
+    <div id="comment-box">
+        <!-- Comment input field and submit button -->
+        <form id="comment-form">
+        <input type="text" id="comment-input" placeholder="Leave a comment" required>
+        <button type="button" id="submit-comment">Submit</button>
+        </form>
+        </div>
+        <!-- Display existing comments -->
+        <div id="comments-container">
+        <h2>Comments:</h2>
+        <!-- Comments will be dynamically added here using JavaScript -->
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Fetch comments on page load
+        fetchComments();
+        // Event listener for submitting a new comment
+        document.getElementById('submit-comment').addEventListener('click', function() {
+        const commentInput = document.getElementById('comment-input');
+        const comment = commentInput.value.trim();
+        if (comment !== '') {
+        submitComment(comment);
+        }
+        });
+        // Function to fetch comments asynchronously
+        function fetchComments() {
+        fetch('get_comments.php')
+        .then(response => response.json())
+        .then(comments => displayComments(comments))
+        .catch(error => console.error('Error fetching comments:', error));
+        }
+        // Function to display comments on the web page
+        function displayComments(comments) {
+        const commentsContainer = document.getElementById('comments-container');
+        commentsContainer.innerHTML = ''; // Clear existing comments
+        comments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        commentElement.textContent = `${comment.username}: ${comment.content}`;
+        commentsContainer.appendChild(commentElement);
+        });
+        }
+        // Function to submit comments asynchronously
+        function submitComment(comment) {
+        fetch('submit_comment.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ comment }),
+        })
+        .then(response => response.json())
+        .then(() => {
+        // After submitting, fetch and display updated comments
+        fetchComments();
+        })
+        .catch(error => console.error('Error submitting comment:', error));
+        }
+        });
+        </script>
+       
+<footer>
+    <p>&copy;2024 My Ceylon Sam Travel.All reserved.</p>
+</footer>
+</body>
+</html>

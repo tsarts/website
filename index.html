@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceylon Sam Travel</title>
+    <title>My ceylin Travel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="php" href="index.php">
 </head>
@@ -38,105 +38,7 @@
 </div>
     </div>
 
-    <!-- Your existing website content -->
-
-    <h2>Leave a Review</h2>
-
-    <form action="review_handler.php" method="post">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-
-        <label for="rating">Rating:</label>
-        <input type="number" id="rating" name="rating" min="1" max="5" required>
-        <br>
-
-        <label for="review">Your Review:</label>
-        <textarea id="review" name="review" rows="4" cols="50" required></textarea>
-        <br>
-
-        <input type="submit" value="Submit Review">
-    </form>
-
-    <!-- Display existing reviews if needed -->
-    <!-- Your existing website content -->
-
-    <h2>Customer Reviews</h2>
-
-    <div id="reviews">
-        <!-- Reviews will be displayed here -->
-    </div>
-    <script>
-        // Use JavaScript to fetch and display reviews
-        fetch('display_reviews.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('reviews').innerHTML = data;
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
-
-
-    <div id="comment-box">
-        <!-- Comment input field and submit button -->
-        <form id="comment-form">
-        <input type="text" id="comment-input" placeholder="Leave a comment" required>
-        <button type="button" id="submit-comment">Submit</button>
-        </form>
-        </div>
-        <!-- Display existing comments -->
-        <div id="comments-container">
-        <h2>Comments:</h2>
-        <!-- Comments will be dynamically added here using JavaScript -->
-        </div>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        // Fetch comments on page load
-        fetchComments();
-        // Event listener for submitting a new comment
-        document.getElementById('submit-comment').addEventListener('click', function() {
-        const commentInput = document.getElementById('comment-input');
-        const comment = commentInput.value.trim();
-        if (comment !== '') {
-        submitComment(comment);
-        }
-        });
-        // Function to fetch comments asynchronously
-        function fetchComments() {
-        fetch('get_comments.php')
-        .then(response => response.json())
-        .then(comments => displayComments(comments))
-        .catch(error => console.error('Error fetching comments:', error));
-        }
-        // Function to display comments on the web page
-        function displayComments(comments) {
-        const commentsContainer = document.getElementById('comments-container');
-        commentsContainer.innerHTML = ''; // Clear existing comments
-        comments.forEach(comment => {
-        const commentElement = document.createElement('div');
-        commentElement.classList.add('comment');
-        commentElement.textContent = `${comment.username}: ${comment.content}`;
-        commentsContainer.appendChild(commentElement);
-        });
-        }
-        // Function to submit comments asynchronously
-        function submitComment(comment) {
-        fetch('submit_comment.php', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ comment }),
-        })
-        .then(response => response.json())
-        .then(() => {
-        // After submitting, fetch and display updated comments
-        fetchComments();
-        })
-        .catch(error => console.error('Error submitting comment:', error));
-        }
-        });
-        </script>
+  
        
 <footer>
     <p>&copy;2024 My Ceylon Sam Travel.All reserved.</p>

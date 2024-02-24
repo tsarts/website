@@ -21,7 +21,7 @@ nav ul{
 }
 nav ul li{
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 a{
     text-decoration: none;
@@ -148,7 +148,7 @@ footer{
     width: 70%;
 }
 .logo{
-    width: 150pxpx;
+    width: 120px;
 }
 .star-rating {
     font-size: 24px; /* Adjust the font size as needed */
@@ -169,7 +169,7 @@ footer{
 .star-rating[data-rating="4"]::before { letter-spacing: 0; }
 .star-rating[data-rating="5"]::before { letter-spacing: 0; }
 
-    @media(min-width:320px){
+    @media(max-width:600px){
         body{
             font-family:'poppins',sans-serif;
         }
@@ -305,6 +305,6 @@ footer{
             border-radius: 8px;
             }
        .logo{
-        width: 120px;
+        width: 60px;
        }
     }
